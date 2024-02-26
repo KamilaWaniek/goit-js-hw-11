@@ -3,12 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
+    <title>Photo Searching Page</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
     <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <h1>Example title</h1>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
+    <h1>Photo Searching Machine</h1>
+    <div class="search-container">
+    <form class="search-form" id="search-form">
+      <input class="input-field"
+        type="text"
+        name="searchQuery"
+        autocomplete="off"
+        placeholder="Search images..."
+      />
+      <button type="submit" class="search-button">Search</button>
+      </div>
+      <div class="gallery"></div>
+      <div class="button-wrapper">
+      <button type="button" class="load-more hidden">Load more</button>
+      </div>
+    </form>
   </body>
 </html>
