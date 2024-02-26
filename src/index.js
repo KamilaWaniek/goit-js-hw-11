@@ -53,24 +53,24 @@ function renderPhotos(data, append = false) {
           downloads,
         }) => ` <li class="gallery-item">
         <a class="gallery-link" href="${largeImageURL}">
-          <img class="gallery-image" src="${webformatURL}" alt="${tags}" width="298" />
+          <img class="gallery-image" src="${webformatURL}" alt="${tags}" width="298"/>
         </a>
-        <div class="container-stats">
+        <div class="image-box">
           <div class="block">
             <h2 class="title">Likes</h2>
-            <p class="amount">${likes}</p>
+            <p>${likes}</p>
           </div>
           <div class="block">
             <h2 class="title">Views</h2>
-            <p class="amount">${views}</p>
+            <p>${views}</p>
           </div>
           <div class="block">
             <h2 class="title">Comments</h2>
-            <p class="amount">${comments}</p>
+            <p>${comments}</p>
           </div>
           <div class="block">
             <h2 class="title">Downloads</h2>
-            <p class="amount">${downloads}</p>
+            <p>${downloads}</p>
           </div>
         </div>
       </li>`
