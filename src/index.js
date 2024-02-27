@@ -6,10 +6,10 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 // Dostęp z DOM
 const searchQuery = document.querySelector('#search-form');
 const gallery = document.querySelector('.gallery');
-const fetchButton = document.querySelector('button[type="button"');
+const fetchingButton = document.querySelector('button[type="button"');
 
 let page = 1;
-let currentQuery = '';
+let currentText = '';
 let totalHits = 0;
 let lightbox;
 
@@ -25,7 +25,7 @@ const searchParams = new URLSearchParams({
 });
 
 //Pobieranie zdjęć
-const fetchPhotos = async () => {
+const fetchingPhotos = async () => {
   searchParams.set('q', searchQuery.elements[0].value.split(' ').join('+'));
   const searchResults = await axios.get(
     `https://pixabay.com/api/?${searchParams}`
@@ -34,7 +34,7 @@ const fetchPhotos = async () => {
 };
 
 // Wyświetlenie zdjęć zgodnych z hasłem wyszukiwania
-function renderPhotos(data, append = false) {
+function renderingPhotos(data, append = false) {
   if (data.hits.length <= 0) {
     Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.'
@@ -106,14 +106,14 @@ searchQuery.addEventListener('submit', async event => {
   }
   try {
     page = 1;
-    const photos = await fetchPhotos(searchQuery, page);
+    const photos = await fetchingPhotos(searchQuery, page);
     totalHits = photos.totalHits;
-    renderPhotos(photos);
+    renderingPhotos(photos);
 
     if (photos.hits.length === 0) {
-      fetchButton.classList.add('hidden');
+      fetchingButton.classList.add('hidden');
     } else {
-      fetchButton.classList.remove('hidden');
+      fetchingButton.classList.remove('hidden');
       const dataHits = photos.totalHits;
       Notiflix.Notify.success(`We found ${dataHits} images.`);
     }
@@ -122,14 +122,14 @@ searchQuery.addEventListener('submit', async event => {
   }
 });
 
-fetchButton.addEventListener('click', async () => {
+fetchingButton.addEventListener('click', async () => {
   searchParams.set('page', ++page);
   try {
-    const photos = await fetchPhotos(currentQuery, page);
-    renderPhotos(photos, true);
+    const photos = await fetchingPhotos(currentText, page);
+    renderingPhotos(photos, true);
     loadMorePhotos(photos.hits.length);
     if (photos.hits.length === 0) {
-      fetchButton.classList.add('hidden');
+      fetchingButton.classList.add('hidden');
     }
   } catch (error) {
     Notiflix.Notify.failure(`ERROR: ${error}`);
@@ -139,11 +139,11 @@ fetchButton.addEventListener('click', async () => {
 // Technika nieskończonego przewijania (Infinite Scroll)
 function loadMorePhotos() {
   if (page * 40 >= totalHits) {
-    fetchButton.classList.add('hidden');
+    fetchingButton.classList.add('hidden');
     Notiflix.Notify.failure(
       "We're sorry, but you've reached the end of search results."
     );
   } else {
-    fetchButton.classList.remove('hidden');
+    fetchingButton.classList.remove('hidden');
   }
 }
