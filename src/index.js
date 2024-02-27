@@ -97,6 +97,7 @@ function renderingPhotos(data, append = false) {
   }
 }
 
+// Działanie przycisku Search
 searchQuery.addEventListener('submit', async event => {
   event.preventDefault();
   const searchPhrase = searchQuery.elements[0].value.trim();
@@ -122,6 +123,7 @@ searchQuery.addEventListener('submit', async event => {
   }
 });
 
+// Działanie przycisku Load More
 fetchingButton.addEventListener('click', async () => {
   searchParams.set('page', ++page);
   try {
